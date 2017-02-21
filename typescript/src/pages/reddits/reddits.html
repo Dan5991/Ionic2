@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      Verlauf
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label fixed>Kategorie</ion-label>
+      <ion-select (ionChange)="changeCategory()" [(ngModel)]="category" name="category">
+        <ion-option value="sports">Sport</ion-option>
+        <ion-option value="food">Essen</ion-option>
+        <ion-option value="news">Nachrichten</ion-option>
+        <ion-option value="music">Musik</ion-option>
+        <ion-option value="funny">Lustiges</ion-option>
+        <ion-option value="games">Spiele</ion-option>
+        <ion-option value="art">Kunst</ion-option>
+      </ion-select>
+     </ion-item> 
+  </ion-list>
+
+  <ion-list>
+      <ion-item *ngFor="let item of items">
+        
+        <ion-thumbnail *ngIf="item.data.thumbnail" item-left>
+          <img src="{{item.data.thumbnail}}">
+        </ion-thumbnail>
+        
+        <h2>{{item.data.title}}</h2>
+
+        <p>
+          <ion-icon name="thumbs-up">{{item.data.score}}</ion-icon>&nbsp;&nbsp;
+          <ion-icon name="chatboxes">{{item.data.num_comments}}</ion-icon>
+        </p>
+
+        <button ion-button clear item-right (click)="viewItem(item.data)">Anzeigen</button>
+      </ion-item>
+  </ion-list> 
+</ion-content>
